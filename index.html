@@ -1,636 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<title>HAIR GALLERY UNISEX SALON AND ACADEMY</title>
-<style>
-  /* Reset and base */
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #fafafa;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 600px;
-    max-width: 350px;
-    margin-left: auto;
-    margin-right: auto;
-    border: 2px solid #006666;
-    border-radius: 10px;
-    position: relative;
-    background: linear-gradient(145deg, #d0e8e8, #e9f5f5);
-    /* removed overflow: hidden to allow scrolling */
-  }
-  h1, h2, h3 {
-    margin: 0 0 10px 0;
-    font-weight: 700;
-    color: #004d4d;
-    text-shadow: 1px 1px 2px #a8d3d3;
-  }
-  h1 {
-    font-size: 1.6rem;
-    text-align: center;
-  }
-  button {
-    background: #009999;
-    color: white;
-    font-weight: 700;
-    border: none;
-    border-radius: 25px;
-    padding: 12px 24px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0,153,153,0.4);
-  }
-  button:disabled {
-    background: #b0b0b0;
-    cursor: not-allowed;
-    box-shadow: none;
-  }
-  button:hover:not(:disabled) {
-    background: #007a7a;
-    box-shadow: 0 6px 12px rgba(0,122,122,0.7);
-  }
-  input[type="text"],
-  input[type="tel"],
-  input[type="date"],
-  input[type="time"],
-  select {
-    width: 100%;
-    padding: 10px 15px;
-    margin: 8px 0 16px 0;
-    border: 2px solid #00b3b3;
-    border-radius: 12px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: inset 1px 1px 4px #c0f0f0;
-    background: #f1fbfb;
-  }
-  input[type="text"]:focus,
-  input[type="tel"]:focus,
-  input[type="date"]:focus,
-  input[type="time"]:focus,
-  select:focus {
-    outline: none;
-    border-color: #007a7a;
-    box-shadow: 0 0 8px #009999;
-    background: #e0f7f7;
-  }
-  label {
-    font-weight: 600;
-    color: #007a7a;
-  }
-  .container {
-    background: white;
-    border-radius: 20px;
-    padding: 25px 30px;
-    width: 100%;
-    max-width: 350px;
-    box-shadow: 0 10px 20px rgba(0, 153, 153, 0.2);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    position: relative;
-    /* removed overflow hidden to allow scrolling */
-    /* also min-height auto to allow grow with content */
-    min-height: auto;
-  }
-  .nav-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
-  }
-  .hidden {
-    display: none;
-  }
-  .link-button {
-    background: none;
-    border: none;
-    color: #009999;
-    font-weight: 700;
-    cursor: pointer;
-    text-decoration: underline;
-    padding: 0;
-    margin-top: 6px;
-    font-size: 0.95rem;
-  }
-  .link-button:hover {
-    color: #007a7a;
-  }
-  .error {
-    color: #cc4c39;
-    font-size: 0.9rem;
-    margin-top: -12px;
-    margin-bottom: 12px;
-    text-shadow: 1px 1px 1px #ffe4e1;
-  }
-  /* Image slider */
-  #imageSlider {
-    width: 100%;
-    height: 180px;
-    border-radius: 20px;
-    object-fit: cover;
-    box-shadow: 0 6px 14px rgba(0, 153, 153, 0.35);
-    margin-bottom: 20px;
-    border: 3px solid #00b3b3;
-  }
-  /* Reviews */
-  .reviews {
-    margin-top: 25px;
-  }
-  .review {
-    background: #d1f0f0;
-    padding: 14px 18px;
-    margin-bottom: 14px;
-    border-radius: 20px;
-    box-shadow: inset 0 3px 8px rgba(0, 179, 179, 0.15);
-    font-style: italic;
-    color: #005959;
-  }
-  .review strong {
-    color: #007a7a;
-  }
-  /* Contact info */
-  .contact-info {
-    margin-top: 25px;
-    font-size: 0.95rem;
-    color: #006666;
-    font-weight: 600;
-    text-align: center;
-  }
-  .contact-info a {
-    color: #008b8b;
-    text-decoration: none;
-    font-weight: 600;
-  }
-  .contact-info a:hover {
-    text-decoration: underline;
-    color: #005050;
-  }
-  /* Gender radio buttons container */
-  .gender-inputs {
-    display: flex;
-    gap: 18px;
-    margin-bottom: 16px;
-    margin-top: 6px;
-  }
-  .gender-inputs label {
-    font-weight: 600;
-    color: #007a7a;
-  }
-  /* Scrollable services select */
-  select {
-    max-height: 150px;
-    overflow-y: auto;
-    background: #f0fcfc;
-  }
-  /* Responsive tweaks */
-  @media (max-width: 400px) {
-    body {
-      max-width: 100vw;
-      border-radius: 0;
-      border: none;
-      min-height: 100vh;
-      background: #fafafa;
-      justify-content: flex-start;
-      padding-top: 20px;
-    }
-    .container {
-      border-radius: 0;
-      box-shadow: none;
-      width: 95vw;
-      max-width: unset;
-      padding: 20px;
-    }
-  }
-  /* Responsive tablets and up */
-  @media (min-width: 600px) {
-    body {
-      min-height: 600px;
-      max-width: 430px;
-      border-radius: 25px;
-    }
-    .container {
-      max-width: 430px;
-      padding: 32px 36px;
-    }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tours & Travels</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="container">
 
-  <!-- Salon Header -->
-  <h1>HAIR GALLERY UNISEX SALON AND ACADEMY</h1>
+  <!-- Dark Mode Toggle -->
+  <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
 
-  <!-- Page 1: Welcome / Sign Up / Login -->
-  <section id="page1">
-    <h2>Welcome!</h2>
-    <p style="color:#004d4d; font-weight:600; margin-bottom:15px;">
-      Please sign up or login to continue.
-    </p>
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">💬</a>
 
-    <div id="authForms">
+  <div class="slider">
 
-      <!-- Sign Up Form -->
-      <form id="signUpForm" class="hidden" autocomplete="off" novalidate>
-        <label for="signupName">Name</label>
-        <input type="text" id="signupName" placeholder="Full Name" required />
+    <!-- Slide 1: Explore -->
+    <section class="slide explore">
+      <div class="top-bar">Customer Care: +91-9876543210</div>
 
-        <label for="signupMobile">Mobile Number</label>
-        <input type="tel" id="signupMobile" placeholder="10-digit Mobile Number" pattern="^[0-9]{10}$" title="Enter 10 digit mobile number" required />
+      <!-- Direct Booking Button -->
+      <button class="direct-booking-btn" onclick="goToSlide(4)">Book Now</button>
 
-        <label for="signupEmail">Email</label>
-        <input type="email" id="signupEmail" placeholder="Email" required />
+      <h1>EXPLORE INDIA & WORLD</h1>
+      <p>Start Your Journey Today!</p>
+      <button onclick="goToSlide(1)">Explore Now</button>
+    </section>
 
-        <label for="signupPassword">Password</label>
-        <input type="password" id="signupPassword" placeholder="Password" required />
-
-        <button type="submit">Sign Up</button>
-        <p style="margin-top:10px;font-size:0.9rem;">
-          Already have an account?
-          <button type="button" class="link-button" id="showLogin">Login here</button>
-        </p>
-        <div id="signUpError" class="error" aria-live="polite"></div>
-      </form>
-
-      <!-- Login Form -->
-      <form id="loginForm" autocomplete="off" novalidate>
-        <label for="loginUser">Mobile Number or Email</label>
-        <input type="text" id="loginUser" placeholder="Enter Mobile Number or Email" required />
-
-        <label for="loginPassword">Password</label>
-        <input type="password" id="loginPassword" placeholder="Password" required />
-
-        <button type="submit">Login</button>
-        <p style="margin-top:10px;font-size:0.9rem;">
-          Don't have an account?
-          <button type="button" class="link-button" id="showSignUp">Sign up here</button>
-        </p>
-        <div id="loginError" class="error" aria-live="polite"></div>
-      </form>
-
-    </div>
-  </section>
-
-  <!-- Page 2: Salon info & book button -->
-  <section id="page2" class="hidden" tabindex="0">
-    <h2>Welcome back!</h2>
-    <img id="imageSlider" src="" alt="Salon Images" />
-    <button id="bookAppointmentBtn" aria-label="Book an appointment">Book Appointment</button>
-    
-    <div class="nav-buttons">
-      <button id="page2BackBtn" aria-label="Logout and go back to login">Back</button>
-      <button id="page2NextBtn" disabled style="visibility:hidden;">Next</button>
-    </div>
-  </section>
-
-  <!-- Page 3: Booking Form & Reviews & Contact -->
-  <section id="page3" class="hidden" tabindex="0">
-    <h2>Book Your Appointment</h2>
-    <form id="bookingForm" autocomplete="off" novalidate>
-      <label for="custName">Name</label>
-      <input type="text" id="custName" placeholder="Your full name" required />
-
-      <label for="custMobile">Mobile Number</label>
-      <input type="tel" id="custMobile" placeholder="10-digit Mobile Number" pattern="^[0-9]{10}$" title="Enter 10 digit mobile number" required />
-
-      <label>Gender</label>
-      <div class="gender-inputs">
-        <label><input type="radio" name="gender" value="Male" required /> Male</label>
-        <label><input type="radio" name="gender" value="Female" /> Female</label>
-        <label><input type="radio" name="gender" value="Other" /> Other</label>
+    <!-- Slide 2: Destination -->
+    <section class="slide destination" id="destination-slide">
+      <div class="nav-buttons">
+        <button onclick="goToSlide(0)">← Back</button>
+        <button onclick="goToSlide(2)">Next →</button>
       </div>
+      <div class="overlay">
+        <h1>Popular Destinations</h1>
+      </div>
+    </section>
 
-      <label for="aptDate">Date</label>
-      <input type="date" id="aptDate" min="" required />
+    <!-- Slide 3: God's Places -->
+    <section class="slide gods-places">
+      <div class="nav-buttons">
+        <button onclick="goToSlide(1)">← Back</button>
+        <button onclick="goToSlide(3)">Next →</button>
+      </div>
+      <h1>God's Places</h1>
+      <div class="package-grid">
+        <div class="package-card">
+          <img src="ayodhya.jpg" alt="Ayodhya" />
+          <h3>Ayodhya</h3>
+        </div>
+        <div class="package-card">
+          <img src="kedarnath.jpg" alt="Kedarnath" />
+          <h3>Kedarnath</h3>
+        </div>
+      </div>
+    </section>
 
-      <label for="aptTime">Time</label>
-      <input type="time" id="aptTime" min="09:00" max="20:00" required />
+    <!-- Slide 4: Packages -->
+    <section class="slide packages">
+      <div class="nav-buttons">
+        <button onclick="goToSlide(2)">← Back</button>
+        <button onclick="goToSlide(4)">Next →</button>
+      </div>
+      <h1>Our Tour Packages</h1>
+      <div class="package-grid">
+        <div class="package-card">
+          <img src="manali.jpg" alt="Manali" />
+          <h3>Manali</h3>
+        </div>
+        <div class="package-card">
+          <img src="maldives.jpg" alt="Maldives" />
+          <h3>Maldives</h3>
+        </div>
+        <div class="package-card">
+          <img src="ayodhya.jpg" alt="Ayodhya" />
+          <h3>Ayodhya</h3>
+        </div>
+      </div>
+    </section>
 
-      <label for="serviceSelect">Choose Service</label>
-      <select id="serviceSelect" size="6" required>
-        <option value="Haircut">Haircut</option>
-        <option value="Shaving">Shaving</option>
-        <option value="Shampoo">Shampoo</option>
-        <option value="Hair Color">Hair Color</option>
-        <option value="Straightening">Straightening</option>
-      </select>
+    <!-- Slide 5: Booking -->
+    <section class="slide booking">
+      <div class="nav-buttons">
+        <button onclick="goToSlide(3)">← Back</button>
+      </div>
+      <h1>Book Your Trip</h1>
+      <form id="booking-form">
+        <input type="text" placeholder="Name" required />
+        <input type="email" placeholder="Email" required />
+        <select required>
+          <option value="">Select Destination</option>
+          <option>Manali</option>
+          <option>Maldives</option>
+          <option>Ayodhya</option>
+          <option>Kedarnath</option>
+          <option>Nagpur</option>
+          <option>Other (Call Us)</option>
+        </select>
+        <input type="date" required />
+        <input type="date" required />
+        <button type="submit">Confirm Booking</button>
+      </form>
+      <p style="margin-top: 20px; color: white;">Need help? Call us: +91-9876543210</p>
 
-      <button type="submit">Book Appointment</button>
-      <div id="bookingSuccess" style="color:#007a7a; margin-top:10px; font-weight:700;" aria-live="polite"></div>
-      <div id="bookingError" class="error" aria-live="polite"></div>
-    </form>
+      <!-- Confirmation Popup -->
+      <div class="confirmation-popup" id="confirmation-popup">
+        <div class="popup-content">
+          <h2>Booking Confirmed! ✅</h2>
+          <p>✨ Wishing you a happy and safe journey! ✈️</p>
+          <button onclick="closePopup()">Close</button>
+        </div>
+        <div class="plane-animation">✈️</div>
+      </div>
+    </section>
 
-    <div class="nav-buttons" style="margin-top:10px;">
-      <button id="page3BackBtn" aria-label="Go back to salon info page">Back</button>
-      <button id="page3NextBtn" disabled style="visibility:hidden;">Next</button>
-    </div>
+  </div>
 
-    <div class="reviews" aria-label="Customer reviews">
-      <h3>Customer Reviews</h3>
-      <div class="review"><strong>Ravi:</strong> Best salon experience ever! Highly recommended.</div>
-      <div class="review"><strong>Simran:</strong> Friendly staff and great service.</div>
-      <div class="review"><strong>Ankit:</strong> Love the hair coloring. Very professional.</div>
-    </div>
-
-    <div class="contact-info" aria-label="Salon contact information">
-      <p><strong>Instagram:</strong> <a href="https://instagram.com/hairgalleryunisexsalon" target="_blank" rel="noopener noreferrer" tabindex="0">@hairgalleryunisexsalon</a></p>
-      <p><strong>WhatsApp:</strong> <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" tabindex="0">+91 98765 43210</a></p>
-    </div>
-  </section>
-
-</div>
-
-<script>
-  (() => {
-    // Elements
-    const page1 = document.getElementById('page1');
-    const page2 = document.getElementById('page2');
-    const page3 = document.getElementById('page3');
-
-    // Auth forms and buttons
-    const signUpForm = document.getElementById('signUpForm');
-    const loginForm = document.getElementById('loginForm');
-    const showLoginBtn = document.getElementById('showLogin');
-    const showSignUpBtn = document.getElementById('showSignUp');
-    const signUpError = document.getElementById('signUpError');
-    const loginError = document.getElementById('loginError');
-
-    // Page 2 controls
-    const imageSlider = document.getElementById('imageSlider');
-    const bookAppointmentBtn = document.getElementById('bookAppointmentBtn');
-    const page2BackBtn = document.getElementById('page2BackBtn');
-
-    // Page 3 controls
-    const bookingForm = document.getElementById('bookingForm');
-    const bookingSuccess = document.getElementById('bookingSuccess');
-    const bookingError = document.getElementById('bookingError');
-    const page3BackBtn = document.getElementById('page3BackBtn');
-
-    // Auth toggle functions
-    function showSignUp() {
-      signUpForm.classList.remove('hidden');
-      loginForm.classList.add('hidden');
-      signUpError.textContent = '';
-      loginError.textContent = '';
-      signUpForm.reset();
-      loginForm.reset();
-      signUpForm.signupName.focus();
-    }
-    function showLogin() {
-      loginForm.classList.remove('hidden');
-      signUpForm.classList.add('hidden');
-      signUpError.textContent = '';
-      loginError.textContent = '';
-      signUpForm.reset();
-      loginForm.reset();
-      loginForm.loginUser.focus();
-    }
-
-    // Current user functions
-    function getCurrentUser() {
-      return JSON.parse(localStorage.getItem('currentUser'));
-    }
-    function saveCurrentUser(user) {
-      localStorage.setItem('currentUser', JSON.stringify(user));
-    }
-    function logoutUser() {
-      localStorage.removeItem('currentUser');
-    }
-
-    // Page visibility
-    function showPage(pageNum) {
-      page1.classList.add('hidden');
-      page2.classList.add('hidden');
-      page3.classList.add('hidden');
-      if(pageNum === 1) page1.classList.remove('hidden');
-      else if(pageNum === 2) page2.classList.remove('hidden');
-      else if(pageNum === 3) page3.classList.remove('hidden');
-    }
-
-    // Image slider setup with local images
-    const salonImages = [
-      'image1.jpg',
-      'image2.jpg',
-      'image3.jpg'
-    ];
-    let sliderIndex = 0;
-    let sliderInterval;
-
-    function startImageSlider() {
-      imageSlider.src = salonImages[sliderIndex];
-      sliderInterval = setInterval(() => {
-        sliderIndex = (sliderIndex + 1) % salonImages.length;
-        imageSlider.src = salonImages[sliderIndex];
-      }, 1000);
-    }
-    function stopImageSlider() {
-      clearInterval(sliderInterval);
-    }
-
-    // Users storage in localStorage
-    function getUsers() {
-      return JSON.parse(localStorage.getItem('users')) || [];
-    }
-    function saveUsers(users) {
-      localStorage.setItem('users', JSON.stringify(users));
-    }
-
-    // Sign Up submit
-    signUpForm.addEventListener('submit', e => {
-      e.preventDefault();
-      signUpError.textContent = '';
-
-      const name = signUpForm.signupName.value.trim();
-      const mobile = signUpForm.signupMobile.value.trim();
-      const email = signUpForm.signupEmail.value.trim().toLowerCase();
-      const password = signUpForm.signupPassword.value.trim();
-
-      if(!name || !mobile || !email || !password) {
-        signUpError.textContent = 'All fields are required.';
-        return;
-      }
-      // Validate mobile number exactly 10 digits
-      if(!/^[0-9]{10}$/.test(mobile)) {
-        signUpError.textContent = 'Enter a valid 10 digit mobile number.';
-        return;
-      }
-
-      const users = getUsers();
-      if(users.find(u => u.email === email)) {
-        signUpError.textContent = 'Email already registered.';
-        return;
-      }
-      if(users.find(u => u.mobile === mobile)) {
-        signUpError.textContent = 'Mobile number already registered.';
-        return;
-      }
-
-      users.push({name, mobile, email, password});
-      saveUsers(users);
-      saveCurrentUser({name, mobile, email});
-      signUpForm.reset();
-      showLogin(); // After signup show login to user to login
-      alert('Sign up successful! Please login using email or mobile number.');
-    });
-
-    // Login submit
-    loginForm.addEventListener('submit', e => {
-      e.preventDefault();
-      loginError.textContent = '';
-
-      const userInput = loginForm.loginUser.value.trim().toLowerCase();
-      const password = loginForm.loginPassword.value.trim();
-
-      const users = getUsers();
-      // Check if input matches email or mobile of users
-      const user = users.find(u => 
-        (u.email === userInput || u.mobile === userInput) && u.password === password
-      );
-
-      if(!user) {
-        loginError.textContent = 'Invalid credentials.';
-        return;
-      }
-
-      saveCurrentUser({name: user.name, mobile: user.mobile, email: user.email});
-      loginForm.reset();
-      showPage(2);
-      startImageSlider();
-      page2BackBtn.focus();
-    });
-
-    // Toggle between signup/login forms
-    showLoginBtn.addEventListener('click', () => {
-      showLogin();
-    });
-    showSignUpBtn.addEventListener('click', () => {
-      showSignUp();
-    });
-
-    // Start on login form by default
-    showLogin();
-
-    // If already logged in, go to page 2
-    const currentUser = getCurrentUser();
-    if(currentUser) {
-      showPage(2);
-      startImageSlider();
-      page2BackBtn.focus();
-    } else {
-      showPage(1);
-      loginForm.loginUser.focus();
-    }
-
-    // Page 2 buttons
-    bookAppointmentBtn.addEventListener('click', () => {
-      // Prefill booking form name and mobile from logged in user
-      const user = getCurrentUser() || {};
-      bookingForm.custName.value = user.name || '';
-      bookingForm.custMobile.value = user.mobile || '';
-      bookingForm.aptDate.value = '';
-      bookingForm.aptTime.value = '';
-      bookingForm.serviceSelect.value = '';
-      // Clear gender radios
-      for (const genderRadio of bookingForm.gender) {
-        genderRadio.checked = false;
-      }
-
-      bookingSuccess.textContent = '';
-      bookingError.textContent = '';
-      showPage(3);
-      stopImageSlider();
-      setMinDate();
-      bookingForm.custName.focus();
-    });
-    page2BackBtn.addEventListener('click', () => {
-      logoutUser();
-      showLogin();
-      showPage(1);
-      stopImageSlider();
-      loginForm.loginUser.focus();
-    });
-
-    // Page 3 Back
-    page3BackBtn.addEventListener('click', () => {
-      showPage(2);
-      startImageSlider();
-      page2BackBtn.focus();
-    });
-
-    // Booking form validation and submission
-    bookingForm.addEventListener('submit', e => {
-      e.preventDefault();
-      bookingSuccess.textContent = '';
-      bookingError.textContent = '';
-
-      const name = bookingForm.custName.value.trim();
-      const mobile = bookingForm.custMobile.value.trim();
-      let gender = '';
-      for (const elem of bookingForm.gender) {
-        if(elem.checked) {
-          gender = elem.value;
-          break;
-        }
-      }
-      const date = bookingForm.aptDate.value;
-      const time = bookingForm.aptTime.value;
-      const service = bookingForm.serviceSelect.value;
-
-      // Validate fields
-      if(!name || !mobile || !gender || !date || !time || !service) {
-        bookingError.textContent = 'Please fill all fields.';
-        return;
-      }
-      // Validate mobile number exactly 10 digits
-      if(!/^[0-9]{10}$/.test(mobile)) {
-        bookingError.textContent = 'Enter a valid 10 digit mobile number.';
-        return;
-      }
-      // Validate date is today or future
-      if(new Date(date) < new Date(new Date().toDateString())) {
-        bookingError.textContent = 'Date cannot be in the past.';
-        return;
-      }
-      // Validate time is between 9am and 8pm (already restricted by input but double check)
-      if(time < '09:00' || time > '20:00') {
-        bookingError.textContent = 'Time must be between 9:00 and 20:00.';
-        return;
-      }
-
-      // Save booking - store in localStorage bookings list
-      const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
-      bookings.push({
-        name, mobile, gender, date, time, service,
-        bookingTime: new Date().toISOString()
-      });
-      localStorage.setItem('bookings', JSON.stringify(bookings));
-
-      // Popup confirmation message to customer
-      alert(`Thank you, ${name}! Your appointment for ${service} on ${date} at ${time} is confirmed.`);
-
-      bookingSuccess.textContent = `Thank you, ${name}! Your appointment for ${service} on ${date} at ${time} is confirmed.`;
-
-      bookingForm.reset();
-      bookingForm.custName.focus();
-    });
-
-    // Set minimum date input to today
-    function setMinDate() {
-      const todayISO = new Date().toISOString().split('T')[0];
-      bookingForm.aptDate.min = todayISO;
-    }
-    setMinDate();
-
-  })();
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
-
